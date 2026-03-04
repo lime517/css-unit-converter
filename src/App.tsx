@@ -1,7 +1,14 @@
 import { Converter } from "@/components/converter";
+import { useSystemTheme } from "@/hooks/use-system-theme";
+import { TooltipProvider } from "@/components/ui/tooltip";
 
 function App() {
-  return <Converter />;
+  useSystemTheme();
+  return (
+    <TooltipProvider>
+      <Converter />
+    </TooltipProvider>
+  );
 }
 
 export default App;

@@ -15,10 +15,7 @@ const contextFields: ContextField[] = [
   { key: "elementFontSize", label: "Element font size", suffix: "px" },
   { key: "lineHeight", label: "Line height", suffix: "px" },
   { key: "rootLineHeight", label: "Root line height", suffix: "px" },
-  { key: "chWidth", label: 'ch ("0" width)', suffix: "px" },
-  { key: "exHeight", label: "ex (x-height)", suffix: "px" },
-  { key: "capHeight", label: "cap (cap height)", suffix: "px" },
-  { key: "icWidth", label: 'ic ("水" width)', suffix: "px" },
+
   { key: "viewportWidth", label: "Viewport width", suffix: "px" },
   { key: "viewportHeight", label: "Viewport height", suffix: "px" },
   { key: "containerWidth", label: "Container width", suffix: "px" },
@@ -34,9 +31,7 @@ interface ContextPanelProps {
 export function ContextPanel({ context, onChange }: ContextPanelProps) {
   function handleChange(key: keyof ConversionContext, value: string) {
     const num = parseFloat(value);
-    if (!isNaN(num) && num > 0) {
-      onChange({ ...context, [key]: num });
-    }
+    onChange({ ...context, [key]: isNaN(num) ? 0 : num });
   }
 
   function handleReset() {
@@ -71,9 +66,8 @@ export function ContextPanel({ context, onChange }: ContextPanelProps) {
               <Input
                 id={field.key}
                 type="number"
-                min="0.1"
                 step="any"
-                value={context[field.key]}
+                value={context[field.key] || ""}
                 onChange={(e) => handleChange(field.key, e.target.value)}
                 className="h-8 text-xs pr-8"
               />

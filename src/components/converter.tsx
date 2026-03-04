@@ -28,15 +28,28 @@ export function Converter() {
   ][];
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-muted">
       <div className="mx-auto max-w-6xl px-4 py-8 sm:py-12">
         {/* Header */}
-        <div className="text-center mb-8">
+        <div className="mb-8 flex flex-col gap-2">
           <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
             CSS Unit Converter
           </h1>
-          <p className="mt-2 text-muted-foreground">
-            Enter a pixel value to see conversions for all CSS length units
+          <p className="text-muted-foreground">
+            Enter a pixel value to see conversions for all CSS length units.
+          </p>
+          <p className="text-muted-foreground text-xs">
+            Conversions based on{" "}
+            <a
+              href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Values_and_units"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline underline-offset-2 hover:text-foreground transition-colors"
+            >
+              MDN CSS Values and Units
+            </a>
+            . Relative units use configurable context values. Click any result
+            to copy.
           </p>
         </div>
 
@@ -44,7 +57,7 @@ export function Converter() {
           {/* Main content */}
           <div className="space-y-6">
             {/* Input */}
-            <Card>
+            <Card className="dark">
               <CardContent className="pt-0">
                 <div className="flex items-center gap-3">
                   <div className="relative flex-1">
@@ -53,7 +66,7 @@ export function Converter() {
                       value={pxValue}
                       onChange={(e) => setPxValue(e.target.value)}
                       placeholder="Enter pixel value"
-                      className="h-14 text-2xl font-mono pr-12"
+                      className="h-14 text-2xl font-bold font-mono pr-12"
                       autoFocus
                     />
                     <span className="absolute right-4 top-1/2 -translate-y-1/2 text-lg text-muted-foreground font-mono pointer-events-none">
@@ -137,19 +150,6 @@ export function Converter() {
 
         {/* Footer */}
         <div className="mt-12 text-center text-xs text-muted-foreground lg:mb-0 mb-16">
-          <p>
-            Conversions based on{" "}
-            <a
-              href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Values_and_units"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="underline underline-offset-2 hover:text-foreground transition-colors"
-            >
-              MDN CSS Values and Units
-            </a>
-            . Relative units use configurable context values. Click any result
-            to copy.
-          </p>
         </div>
       </div>
     </div>
