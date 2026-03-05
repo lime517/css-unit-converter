@@ -33,10 +33,10 @@ export function Converter() {
         {/* Header */}
         <div className="mb-8 flex flex-col gap-2">
           <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
-            CSS Unit Converter
+            All the Units
           </h1>
           <p className="text-muted-foreground">
-            Enter a pixel value to see conversions for all CSS length units.
+            Every single CSS unit in one place. Enter a pixel value to see conversions.
           </p>
           <p className="text-muted-foreground text-xs">
             Conversions based on{" "}

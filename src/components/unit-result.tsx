@@ -19,7 +19,8 @@ export function UnitResult({ unit, pxValue, context }: UnitResultProps) {
   const converted = unit.convert(pxValue, context);
   const formatted = formatValue(converted);
   const copyText = `${formatted}${unit.unit}`;
-  const isInteger = converted !== 0 && Number.isInteger(converted);
+  const pxText = `${formatValue(pxValue)}px`;
+  const isShorter = pxValue !== 0 && copyText.length < pxText.length;
 
   async function handleCopy() {
     await navigator.clipboard.writeText(copyText);
@@ -33,7 +34,7 @@ export function UnitResult({ unit, pxValue, context }: UnitResultProps) {
         <button
           onClick={handleCopy}
           className={`group flex items-center justify-between rounded-lg border px-3 py-2.5 transition-colors text-left cursor-pointer w-full ${
-            isInteger
+            isShorter
               ? "bg-accent border-accent-foreground/30 hover:bg-accent/80"
               : "hover:bg-accent/30"
           }`}
@@ -42,7 +43,7 @@ export function UnitResult({ unit, pxValue, context }: UnitResultProps) {
             <div className="flex items-baseline gap-2">
               <span
                 className={`font-mono text-sm font-semibold tabular-nums truncate ${
-                  isInteger ? "text-accent-foreground" : ""
+                  isShorter ? "text-accent-foreground" : ""
                 }`}
               >
                 {formatted}
